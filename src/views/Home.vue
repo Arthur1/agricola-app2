@@ -1,18 +1,13 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <b-container>
+      <h1 class="mt-5 text-primary">Agricola for Randomizer</h1>
+      <p>
+        「教養特論：拡張アグリコラ学」を読んでいただきありがとうございます。
+      </p>
+    </b-container>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
-export default {
-  name: 'home',
-  components: {
-    HelloWorld
-  }
-}
 </script>
