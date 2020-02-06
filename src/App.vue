@@ -6,13 +6,18 @@
     <main>
       <router-view/>
     </main>
+    <footer>
+      <footer-bar/>
+    </footer>
   </div>
 </template>
 <script>
 import HeaderBar from '@/components/HeaderBar'
+import FooterBar from '@/components/FooterBar'
 export default {
   components: {
-    HeaderBar
+    HeaderBar,
+    FooterBar
   }
 }
 </script>

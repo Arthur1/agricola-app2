@@ -9,3 +9,13 @@ $font-family-sans-serif: "Noto Sans JP", Helvetica, Arial, sans-serif;
 
 @import '~bootstrap/scss/bootstrap.scss';
 @import '~bootstrap-vue/src/index.scss';
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 50px;
+}
