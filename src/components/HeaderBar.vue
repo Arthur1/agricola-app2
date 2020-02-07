@@ -10,6 +10,7 @@
           <b-nav-item to="/contortionist" active-class="active">ヘビ女</b-nav-item>
           <b-nav-item to="/homo_ludens" active-class="active">ホモ・ルーデンス</b-nav-item>
           <b-nav-item to="/veterinarian" active-class="active">獣医</b-nav-item>
+          <b-nav-item to="/random_number" active-class="active">乱数生成</b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto">
           <b-nav-item href='https://buratsuki.work/' target="_blank" rel="noopener">ぶらつき学生ポータル</b-nav-item>

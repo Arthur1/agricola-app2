@@ -6,6 +6,7 @@ import FieldMessenger from '@/views/FieldMessenger.vue'
 import Contortionist from '@/views/Contortionist.vue'
 import HomoLudens from '@/views/HomoLudens.vue'
 import Veterinarian from '@/views/Veterinarian.vue'
+import RandomNumber from '@/views/RandomNumber.vue'
 import NotFound from '@/views/NotFound.vue'
 
 Vue.use(VueRouter)
@@ -57,6 +58,14 @@ const routes = [
     component: Veterinarian,
     meta: {
       title: '獣医'
+    }
+  },
+  {
+    path: '/random_number',
+    name: 'RandomNumber',
+    component: RandomNumber,
+    meta: {
+      title: '乱数生成'
     }
   },
   {
