@@ -21,3 +21,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+main {
+  padding-bottom: 50px;
+}
+</style>
