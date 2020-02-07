@@ -20,8 +20,8 @@
       <b-list-group>
         <b-list-group-item v-for="(itemID, key) in pickedItemsList" :key="key">
           {{ key + 1 }}回目:
-          <img class="history_icon" :src="items[itemID - 1].src">
-          <span>{{ items[itemID - 1].name }}を得ました</span>
+          <img class="history_icon" :src="items[itemID].src">
+          <span>{{ items[itemID].name }}を得ました</span>
         </b-list-group-item>
       </b-list-group>
     </b-container>
@@ -41,47 +41,47 @@ export default {
     return {
       items: [
         {
-          id: 1,
+          id: 0,
           name: '小麦',
           src: require('@/assets/img/grain.png')
         },
         {
-          id: 2,
+          id: 1,
           name: '野菜',
           src: require('@/assets/img/vegetable.png')
         },
         {
-          id: 3,
+          id: 2,
           name: '羊',
           src: require('@/assets/img/sheep.png')
         },
         {
-          id: 4,
+          id: 3,
           name: '猪',
           src: require('@/assets/img/boar.png')
         },
         {
-          id: 5,
+          id: 4,
           name: '牛',
           src: require('@/assets/img/cattle.png')
         },
         {
-          id: 6,
+          id: 5,
           name: '木材',
           src: require('@/assets/img/wood.png')
         },
         {
-          id: 7,
+          id: 6,
           name: 'レンガ',
           src: require('@/assets/img/clay.png')
         },
         {
-          id: 8,
+          id: 7,
           name: '葦',
           src: require('@/assets/img/reed.png')
         },
         {
-          id: 9,
+          id: 8,
           name: '石材',
           src: require('@/assets/img/stone.png')
         }
@@ -103,7 +103,7 @@ export default {
       let pickedItemID = this.unpickedItemsList[Math.floor(Math.random() * this.unpickedItemsList.length)]
       this.pickedItemsList.push(pickedItemID)
       localStorage.setItem(localStorageName, JSON.stringify(this.pickedItemsList))
-      this.$bvToast.toast(`${this.items[pickedItemID - 1].name}を得ました`, {
+      this.$bvToast.toast(`${this.items[pickedItemID].name}を得ました`, {
         variant: 'success',
         autoHideDelay: 1500
       })
