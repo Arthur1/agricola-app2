@@ -17,9 +17,9 @@
         <items-element v-for="item in items" :item="item" :pickedItemsList="pickedItemsList" :key="item.id" />
       </div>
       <h2 class="mt-3 text-success">履歴</h2>
-      <b-list-group>
-        <b-list-group-item v-for="(itemID, key) in pickedItemsList" :key="key">
-          {{ key + 1 }}回目:
+      <b-list-group class="">
+        <b-list-group-item v-for="(itemID, key) in reversedPickedItemsList" :key="key" :variant="key === 0 ? 'info' : ''">
+          {{ reversedPickedItemsList.length - key }}回目:
           <img class="history_icon" :src="items[itemID].src">
           <span>{{ items[itemID].name }}を得ました</span>
         </b-list-group-item>
@@ -93,6 +93,9 @@ export default {
     unpickedItemsList: function() {
       let allItemsList = this.items.map(item => item.id)
       return allItemsList.filter(id => ! this.pickedItemsList.includes(id), this)
+    },
+    reversedPickedItemsList: function() {
+      return this.pickedItemsList.slice().reverse()
     }
   },
   created: function() {
