@@ -6,7 +6,7 @@
         各ラウンドのはじめに「品物を引く」ボタンを押してください。
       </p>
       <div class="text-center">
-        <b-button variant="info" class="button-pickup" @click="pickItem" :disabled="unpickedItemsList.length === 0"><b-icon-box-arrow-up/>品物を引く</b-button>
+        <b-button variant="info" class="button-pickup" @click="pickItem" :disabled="pickableItemsList.length === 0"><b-icon-box-arrow-up/>品物を引く</b-button>
         <b-button variant="danger" v-b-modal.resetModal><b-icon-x-circle/>リセット</b-button>
         <b-modal id="resetModal" title="リセット" cancel-title="キャンセル" ok-variant="danger" ok-title="リセットする" @ok="resetItems">
           <p class="my-4">この操作は取り消せません。本当によろしいですか。</p>
@@ -14,14 +14,14 @@
       </div>
       <h2 class="mt-3 text-success">残りの品物</h2>
       <div class="items">
-        <items-element v-for="item in items" :item="item" :pickedItemsList="pickedItemsList" :key="item.id" />
+        <items-element v-for="item in items" :item="item" :pickedItemsList="history" :key="item.id" />
       </div>
       <h2 class="mt-3 text-success">履歴</h2>
-      <b-list-group class="">
-        <b-list-group-item v-for="(itemID, key) in reversedPickedItemsList" :key="key" :variant="key === 0 ? 'info' : ''">
-          {{ reversedPickedItemsList.length - key }}回目:
+      <b-list-group>
+        <b-list-group-item v-for="(itemID, key) in reversedHistory" :key="key" :variant="key === 0 ? 'info' : ''">
+          {{ reversedHistory.length - key }}回目:
           <img class="history_icon" :src="items[itemID].src">
-          <span>{{ items[itemID].name }}を得ました</span>
+          <span>{{ items[itemID].name }}</span>
         </b-list-group-item>
       </b-list-group>
     </b-container>
@@ -86,33 +86,33 @@ export default {
           src: require('@/assets/img/stone.png')
         }
       ],
-      pickedItemsList: []
+      history: []
     }
   },
   computed: {
-    unpickedItemsList: function() {
+    pickableItemsList: function() {
       let allItemsList = this.items.map(item => item.id)
-      return allItemsList.filter(id => ! this.pickedItemsList.includes(id), this)
+      return allItemsList.filter(id => ! this.history.includes(id), this)
     },
-    reversedPickedItemsList: function() {
-      return this.pickedItemsList.slice().reverse()
+    reversedHistory: function() {
+      return this.history.slice().reverse()
     }
   },
   created: function() {
-    this.pickedItemsList = JSON.parse(localStorage.getItem(localStorageName)) || []
+    this.history = JSON.parse(localStorage.getItem(localStorageName)) || []
   },
   methods: {
     pickItem: function() {
-      let pickedItemID = this.unpickedItemsList[Math.floor(Math.random() * this.unpickedItemsList.length)]
-      this.pickedItemsList.push(pickedItemID)
-      localStorage.setItem(localStorageName, JSON.stringify(this.pickedItemsList))
+      let pickedItemID = this.getRandomElement(this.pickableItemsList)
+      this.history.push(pickedItemID)
+      localStorage.setItem(localStorageName, JSON.stringify(this.history))
       this.$bvToast.toast(`${this.items[pickedItemID].name}を得ました`, {
         variant: 'success',
         autoHideDelay: 1500
       })
     },
     resetItems: function() {
-      this.pickedItemsList = []
+      this.history = []
       localStorage.removeItem(localStorageName)
       this.$bvToast.toast('リセットしました', {
         variant: 'danger',

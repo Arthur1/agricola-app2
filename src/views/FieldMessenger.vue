@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     pickField: function() {
-      this.pickedField = this.pickableFields[Math.floor(Math.random() * this.pickableFields.length)]
+      this.pickedField = this.getRandomElement(this.pickableFields)
       this.$bvToast.toast('未使用1スペースを選択しました', {
         variant: 'success',
         autoHideDelay: 1500
