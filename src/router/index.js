@@ -8,6 +8,7 @@ import HomoLudens from '@/views/HomoLudens.vue'
 import Veterinarian from '@/views/Veterinarian.vue'
 import RandomNumber from '@/views/RandomNumber.vue'
 import NotFound from '@/views/NotFound.vue'
+import '@/registerServiceWorker'
 
 Vue.use(VueRouter)
 
